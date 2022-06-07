@@ -1,4 +1,4 @@
-﻿namespace MvvmBlazor.Tests.Components;
+namespace MvvmBlazor.Tests.Components;
 
 public class MvvmComponentBaseTTests : UnitTest
 {
@@ -6,6 +6,8 @@ public class MvvmComponentBaseTTests : UnitTest
 
     protected override void RegisterServices(IServiceCollection services)
     {
+        services.AddSingleton<IMvvmServiceScopeFactory, MvvmServiceScopeFactory>();
+
         var binder = services.StrictMock<IBinder>();
         services.StrictMock<ViewModelBase>();
         services.StrictMock<IViewModelParameterSetter>();

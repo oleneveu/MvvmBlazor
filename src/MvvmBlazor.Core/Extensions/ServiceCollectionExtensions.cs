@@ -1,4 +1,5 @@
-﻿using Binder = MvvmBlazor.Internal.Bindings.Binder;
+using MvvmBlazor.ServicesScope;
+using Binder = MvvmBlazor.Internal.Bindings.Binder;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ public static class ServiceCollectionExtensions
         serviceCollection.AddSingleton<IParameterResolver, ParameterResolver>();
         serviceCollection.AddSingleton<IParameterCache, ParameterCache>();
         serviceCollection.AddSingleton<IViewModelParameterSetter, ViewModelParameterSetter>();
+        serviceCollection.AddSingleton<IMvvmServiceScopeFactory, MvvmServiceScopeFactory>();
         serviceCollection.AddTransient<IWeakEventManager, WeakEventManager>();
         serviceCollection.AddTransient<IBinder, Binder>();
 

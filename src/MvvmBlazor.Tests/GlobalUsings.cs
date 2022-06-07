@@ -1,7 +1,8 @@
-﻿global using System;
+global using System;
 global using Microsoft.Extensions.DependencyInjection;
 global using Moq;
 global using MvvmBlazor.Components;
+global using MvvmBlazor.ServicesScope;
 global using MvvmBlazor.Internal.Bindings;
 global using MvvmBlazor.Tests.Abstractions;
 global using Shouldly;

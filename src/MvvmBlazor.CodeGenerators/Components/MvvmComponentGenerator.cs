@@ -1,4 +1,4 @@
-﻿namespace MvvmBlazor.CodeGenerators.Components;
+namespace MvvmBlazor.CodeGenerators.Components;
 
 [Generator]
 public class MvvmComponentGenerator : ISourceGenerator
@@ -148,6 +148,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using MvvmBlazor.Components;
 using MvvmBlazor.ViewModel;
+using MvvmBlazor.ServicesScope;
 
 namespace {componentNamespace}
 {{
@@ -155,7 +156,7 @@ namespace {componentNamespace}
     {{
         private AsyncServiceScope? _scope;
 
-        [Inject] IServiceScopeFactory ScopeFactory {{ get; set; }} = default!;
+        [Inject] IMvvmServiceScopeFactory ScopeFactory {{ get; set; }} = default!;
         [Inject] protected IServiceProvider RootServiceProvider {{ get; set; }} = default!;
         protected bool IsDisposed {{ get; private set; }}
 
@@ -187,7 +188,7 @@ namespace {componentNamespace}
 #pragma warning restore CS8618
         {{
             RootServiceProvider = services;
-            ScopeFactory = services.GetRequiredService<IServiceScopeFactory>();
+            ScopeFactory = services.GetRequiredService<IMvvmServiceScopeFactory>();
             InitializeDependencies();
         }}
 

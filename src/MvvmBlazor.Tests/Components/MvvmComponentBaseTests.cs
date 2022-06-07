@@ -1,4 +1,6 @@
-﻿namespace MvvmBlazor.Tests.Components;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace MvvmBlazor.Tests.Components;
 
 public class MvvmComponentBaseTests : UnitTest
 {
@@ -7,6 +9,7 @@ public class MvvmComponentBaseTests : UnitTest
     protected override void RegisterServices(IServiceCollection services)
     {
         var binder = services.StrictMock<IBinder>();
+        services.AddSingleton<IMvvmServiceScopeFactory, MvvmServiceScopeFactory>();
         services.AddSingleton<TestComponent>();
 
         binder.SetupSet(x => x.ValueChangedCallback = It.IsAny<Action<IBinding, EventArgs>>()).Verifiable();
