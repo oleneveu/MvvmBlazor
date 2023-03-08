@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
-    <Version>6.0.7-Pre</Version>
+    <Version>6.0.8-Pre</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(CI)' == 'true'">
