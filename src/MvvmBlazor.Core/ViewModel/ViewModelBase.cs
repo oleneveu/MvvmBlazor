@@ -1,10 +1,13 @@
+using MvvmBlazor.ServicesScope;
+
 namespace MvvmBlazor.ViewModel;
 
 public abstract class ViewModelBase : INotifyPropertyChanged
 {
     private readonly Dictionary<string, List<Func<object, Task>>> _subscriptions = new();
 
-    public IServiceProvider RootServiceProvider { get; set; } = null!;
+    public IServiceProvider ScopedServiceProvider { get; private set; } = null!;
+    public IServiceProvider RootServiceProvider { get; private set; } = null!;
 
     public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -31,6 +34,16 @@ public abstract class ViewModelBase : INotifyPropertyChanged
 
         return false;
     }
+
+    [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+    public void SetServiceProviders(IServiceProvider rootServiceProvider, IServiceProvider scopedServiceProvider)
+    {
+        this.RootServiceProvider = rootServiceProvider;
+        this.ScopedServiceProvider = scopedServiceProvider;
+        OnServiceProvidersAvailable(rootServiceProvider, scopedServiceProvider);
+    }
+
+    protected virtual void OnServiceProvidersAvailable(IServiceProvider rootServiceProvider, IServiceProvider scopedServices) { }
 
     public virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {

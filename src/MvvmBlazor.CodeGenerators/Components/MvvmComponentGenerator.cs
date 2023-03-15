@@ -309,8 +309,11 @@ namespace {componentNamespace}
 
         private void SetBindingContext()
         {{
-            BindingContext ??= ScopedServices.GetRequiredService<T>();
-            BindingContext.RootServiceProvider = RootServiceProvider;
+            if (BindingContext is null)
+            {{
+                BindingContext = ScopedServices.GetRequiredService<T>();
+                BindingContext.SetServiceProviders(RootServiceProvider, ScopedServices);
+            }}
         }}
 
         private void SetParameters()

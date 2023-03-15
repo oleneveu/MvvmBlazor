@@ -5,7 +5,7 @@
     <LangVersion>10.0</LangVersion>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <IncludeSymbols>false</IncludeSymbols>
-    <Version>6.0.8-Pre</Version>
+    <Version>6.0.11-Pre</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(CI)' == 'true'">
